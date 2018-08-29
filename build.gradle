@@ -2,6 +2,14 @@ plugins {
     id 'java'
 }
 
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'me.orangeflare.openyuri'
+        )
+    }
+}
+
 group 'orangeflare.me'
 version '1.0.0.0'
 
