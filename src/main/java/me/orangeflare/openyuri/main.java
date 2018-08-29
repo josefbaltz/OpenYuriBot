@@ -11,7 +11,7 @@ import me.orangeflare.openyuri.command.*;
 import java.io.InputStream;
 
 public class Main {
-    private static String version = "v1.0.3-DEV";
+    private static String version = "v1.1.0";
 
     public static void main(String[] args) {
         configManager config = new configManager();
