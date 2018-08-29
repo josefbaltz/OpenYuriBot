@@ -5,7 +5,7 @@ plugins {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'me.orangeflare.openyuri'
+                'Main-Class': 'me.orangeflare.openyuri.main'
         )
     }
 }
