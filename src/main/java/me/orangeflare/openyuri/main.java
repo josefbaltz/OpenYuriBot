@@ -53,7 +53,10 @@ public class Main {
                         .append("``y.help, y.commands - Displays this text!``\n")
                         .append("``y.about, y.info - Give information about me!``\n")
                         .append("``y.ping - Replies with 'Pong!'``\n")
-                        .append("``y.flipcoin, y.coinflip - Flips a coin!``")
+                        .append("``y.flipcoin, y.coinflip - Flips a coin!``\n")
+                        .append("``y.hug - Hug someone!``\n")
+                        .append("``y.kiss - Kiss someone!``\n")
+                        .append("``y.slap - Slap someone!``")
                         .send(event.getChannel());
             }
         });

@@ -25,7 +25,7 @@ public class animeActions implements MessageCreateListener {
             List<String> args = new ArrayList<>(Arrays.asList(argArray));
             args.remove(0);
 
-            int randImage = ThreadLocalRandom.current().nextInt(1, 6);
+            int randImage = ThreadLocalRandom.current().nextInt(1, 7);
 
             new MessageBuilder()
                     .setContent("Hey " + args.get(0) + "!")
@@ -38,14 +38,48 @@ public class animeActions implements MessageCreateListener {
                     .send(event.getChannel());
         }
 
-        if(event.getMessage().getContent().equalsIgnoreCase("y.hug")) {
-            commandIssued(event, "hug");
+        if(event.getMessage().getContent().toLowerCase().startsWith("y.slap")) {
+            commandIssued(event, "slap");
+            event.getMessage().delete();
 
+            String[] argArray = event.getMessage().getContent().split(" ", 2);
+            if (argArray.length != 2) { return; }
+            List<String> args = new ArrayList<>(Arrays.asList(argArray));
+            args.remove(0);
+
+            int randImage = ThreadLocalRandom.current().nextInt(1, 6);
+
+            new MessageBuilder()
+                    .setContent("Hey " + args.get(0) + "!")
+                    .setEmbed(new EmbedBuilder()
+                            .setAuthor("OpenYuri")
+                            .setThumbnail(getResource("/about/thumbnail.png"))
+                            .setTitle(event.getMessage().getAuthor().getDisplayName() + " slapped you!")
+                            .setImage(getResource("/slap/" + randImage + ".gif"), "gif")
+                    )
+                    .send(event.getChannel());
         }
 
-        if(event.getMessage().getContent().equalsIgnoreCase("y.slap")) {
-            commandIssued(event, "slap");
+        if(event.getMessage().getContent().toLowerCase().startsWith("y.hug")) {
+            commandIssued(event, "hug");
+            event.getMessage().delete();
 
+            String[] argArray = event.getMessage().getContent().split(" ", 2);
+            if (argArray.length != 2) { return; }
+            List<String> args = new ArrayList<>(Arrays.asList(argArray));
+            args.remove(0);
+
+            int randImage = ThreadLocalRandom.current().nextInt(1, 6);
+
+            new MessageBuilder()
+                    .setContent("Hey " + args.get(0) + "!")
+                    .setEmbed(new EmbedBuilder()
+                            .setAuthor("OpenYuri")
+                            .setThumbnail(getResource("/about/thumbnail.png"))
+                            .setTitle(event.getMessage().getAuthor().getDisplayName() + " hugged you!")
+                            .setImage(getResource("/hug/" + randImage + ".gif"), "gif")
+                    )
+                    .send(event.getChannel());
         }
     }
 }
