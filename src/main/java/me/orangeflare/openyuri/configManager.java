@@ -1,32 +1,40 @@
 package me.orangeflare.openyuri;
 
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.FileInputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 public class configManager {
-    InputStream inputStream;
-    String configProperty;
+    Properties botProp = new Properties();
+    FileInputStream input;
 
-    public String read(String field) throws IOException {
+    public String read(String field) {
         try {
-            Properties botConfig = new Properties();
-            String botConfigName = "bot.properties";
-
-            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(botConfigName);
-
-            if (inputStream != null) {
-                botConfig.load(inputStream);
-            } else {
-                throw new FileNotFoundException("[Warning!] Bot configuration file not found!");
+            input = new FileInputStream("./bot.properties");
+            botProp.load(input);
+        } catch (IOException e) {
+            System.out.println("No bot.properties file found!\nGenerating one for you now ...");
+            String data = "#OpenYuri Configuration File\n" +
+                    "discordAPI=";
+            try {
+                Files.write(Paths.get("./bot.properties"), data.getBytes());
+            } catch (IOException e0) {
+                System.err.println(e0);
             }
-            String configProperty = botConfig.getProperty(field);
-        } catch (Exception e) {
-            System.err.println("[ERROR] " + e);
+            System.out.println("Done, please edit the file before starting the bot again!");
+            System.exit(0);
         } finally {
-            inputStream.close();
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e1) {
+                    System.err.println(e1);
+                }
+            }
         }
-        return configProperty;
+        return botProp.getProperty(field);
     }
 }

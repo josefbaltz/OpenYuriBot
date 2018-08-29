@@ -9,6 +9,8 @@ public class main {
     public static void main(String[] args) throws IOException {
         configManager config = new configManager();
 
-        DiscordApi api = new DiscordApiBuilder().setToken(config.read("discordAPI")).login().join();
+        String APIToken = config.read("discordAPI");
+
+        DiscordApi api = new DiscordApiBuilder().setToken(APIToken).login().join();
     }
 }
