@@ -42,6 +42,7 @@ public class main {
                     event.getMessage().getContent().equalsIgnoreCase("y.commands")) {
                 commandIssued(event, "help");
                 new MessageBuilder()
+                        .append("``OpenYuri Bot - " + version + "``\n")
                         .append("``y.help, y.commands - Displays this text!``\n")
                         .append("``y.about - Give information about me!``\n")
                         .append("``y.ping - Replies with 'Pong!'``\n")
