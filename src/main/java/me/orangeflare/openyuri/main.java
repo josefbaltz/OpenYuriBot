@@ -42,9 +42,9 @@ public class main {
                     event.getMessage().getContent().equalsIgnoreCase("y.commands")) {
                 commandIssued(event, "help");
                 new MessageBuilder()
-                        .append("``y.help, y.commands - Displays this text!``")
-                        .append("``y.about - Give information about me!``")
-                        .append("``y.ping - Replies with 'Pong!'``")
+                        .append("``y.help, y.commands - Displays this text!``\n")
+                        .append("``y.about - Give information about me!``\n")
+                        .append("``y.ping - Replies with 'Pong!'``\n")
                         .append("``y.flipcoin, y.coinflip - Flips a coin!``")
                         .send(event.getChannel());
             }
