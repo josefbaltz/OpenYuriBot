@@ -30,7 +30,7 @@ public class main {
                 );
     }
 
-    public static void commandInfo(MessageCreateEvent event, String command) {
+    public static void commandIssued(MessageCreateEvent event, String command) {
         System.out.println(event.getMessage().getAuthor() + " issued command '" + command + "'");
     }
 
@@ -38,18 +38,20 @@ public class main {
         yuri.addMessageCreateListener(new ping());
         yuri.addMessageCreateListener(new flipCoin());
         yuri.addMessageCreateListener(event -> {
-            if (event.getMessage().getContent().equalsIgnoreCase("y.help")) {
-                commandInfo(event, "help");
+            if (event.getMessage().getContent().equalsIgnoreCase("y.help") ||
+                    event.getMessage().getContent().equalsIgnoreCase("y.commands")) {
+                commandIssued(event, "help");
                 new MessageBuilder()
-                        .append("```y.about - Give information about me!```")
-                        .append("```y.ping - Replies with 'Pong!'```")
-                        .append("```y.flipcoin, y.coinflip - Flips a coin!```")
+                        .append("``y.help, y.commands - Displays this text!``")
+                        .append("``y.about - Give information about me!``")
+                        .append("``y.ping - Replies with 'Pong!'``")
+                        .append("``y.flipcoin, y.coinflip - Flips a coin!``")
                         .send(event.getChannel());
             }
         });
         yuri.addMessageCreateListener(event -> {
             if (event.getMessage().getContent().equalsIgnoreCase("y.about")) {
-                commandInfo(event, "about");
+                commandIssued(event, "about");
                 new MessageBuilder()
                         .setEmbed(new EmbedBuilder()
                                 .setAuthor("OpenYuri", "https://github.com/OrangeFlare/OpenYuriBot", "https://opensource.org/files/osi_keyhole_300X300_90ppi_0.png")

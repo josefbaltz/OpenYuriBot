@@ -5,13 +5,13 @@ import org.javacord.api.listener.message.MessageCreateListener;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import static me.orangeflare.openyuri.main.commandInfo;
+import static me.orangeflare.openyuri.main.commandIssued;
 
 public class flipCoin implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
         if (event.getMessage().getContent().equalsIgnoreCase("y.flipcoin") || event.getMessage().getContent().equalsIgnoreCase("y.coinflip")) {
-            commandInfo(event, "flipcoin");
+            commandIssued(event, "flipcoin");
             int coinFlipInt = ThreadLocalRandom.current().nextInt(0,2);
             if (coinFlipInt==0) {
                 event.getChannel().sendMessage("Heads!");
