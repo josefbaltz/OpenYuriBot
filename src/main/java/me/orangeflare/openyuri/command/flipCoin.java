@@ -12,10 +12,15 @@ public class flipCoin implements MessageCreateListener {
     public void onMessageCreate(MessageCreateEvent event) {
         if (event.getMessage().getContent().equalsIgnoreCase("y.flipcoin") || event.getMessage().getContent().equalsIgnoreCase("y.coinflip")) {
             commandIssued(event, "flipcoin");
+            event.getMessage().delete();
+
             int coinFlipInt = ThreadLocalRandom.current().nextInt(0,2);
+
             if (coinFlipInt==0) {
                 event.getChannel().sendMessage("Heads!");
-            } else { event.getChannel().sendMessage("Tails!"); }
+            } else {
+                event.getChannel().sendMessage("Tails!");
+            }
         }
     }
 }

@@ -8,9 +8,7 @@ import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.util.logging.ExceptionLogger;
 import me.orangeflare.openyuri.command.*;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.io.InputStream;
 
 public class Main {
     private static String version = "v1.0.3-DEV";
@@ -38,16 +36,7 @@ public class Main {
         System.out.println(event.getMessage().getAuthor() + " issued command '" + command + "'");
     }
 
-    public static BufferedImage getResource(String dir) {
-        BufferedImage resource;
-        try {
-            resource = ImageIO.read(Main.class.getResource(dir));
-            return resource;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+    public static InputStream getResource(String dir) { return Main.class.getResourceAsStream(dir); }
 
     private static void core(DiscordApi yuri) {
         yuri.addMessageCreateListener(new ping());
@@ -57,22 +46,28 @@ public class Main {
             if (event.getMessage().getContent().equalsIgnoreCase("y.help") ||
                     event.getMessage().getContent().equalsIgnoreCase("y.commands")) {
                 commandIssued(event, "help");
+                event.getMessage().delete();
+
                 new MessageBuilder()
                         .append("``OpenYuri Bot - " + version + "``\n")
                         .append("``y.help, y.commands - Displays this text!``\n")
-                        .append("``y.about - Give information about me!``\n")
+                        .append("``y.about, y.info - Give information about me!``\n")
                         .append("``y.ping - Replies with 'Pong!'``\n")
                         .append("``y.flipcoin, y.coinflip - Flips a coin!``")
                         .send(event.getChannel());
             }
         });
         yuri.addMessageCreateListener(event -> {
-            if (event.getMessage().getContent().equalsIgnoreCase("y.about")) {
+            if (event.getMessage().getContent().equalsIgnoreCase("y.about") ||
+                    event.getMessage().getContent().equalsIgnoreCase("y.info")) {
                 commandIssued(event, "about");
+                event.getMessage().delete();
+
                 new MessageBuilder()
                         .setEmbed(new EmbedBuilder()
-                                .setAuthor("OpenYuri", "https://github.com/OrangeFlare/OpenYuriBot", getResource("about/icon.png"))
-                                .setThumbnail(getResource("about/thumbnail.png"))
+                                //TODO Add .png to end of Resource Directory to re-enable loading of Author Icon when fixed by Javacord
+                                .setAuthor("OpenYuri", "https://github.com/OrangeFlare/OpenYuriBot", getResource("/about/icon"))
+                                .setThumbnail(getResource("/about/thumbnail.png"))
                                 .setTitle(version)
                                 .setDescription("About Me!")
                                 .addField("OpenYuri Developer", "OrangeFlare#1337", true)
