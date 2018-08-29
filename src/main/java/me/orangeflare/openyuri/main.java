@@ -4,10 +4,15 @@ import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
+import org.javacord.api.event.message.MessageCreateEvent;
+import org.javacord.api.util.logging.ExceptionLogger;
+import me.orangeflare.openyuri.command.*;
 
 import java.io.IOException;
 
 public class main {
+    public static String version = "v1.0.2-DEV";
+
     public static void main(String[] args) throws IOException {
         configManager config = new configManager();
 
@@ -17,10 +22,25 @@ public class main {
             System.exit(0);
         }
 
-        DiscordApi yuri = new DiscordApiBuilder().setToken(APIToken).login().join();
+        new DiscordApiBuilder()
+                .setToken(APIToken)
+                .setRecommendedTotalShards().join()
+                .loginAllShards()
+                .forEach(shardFuture -> shardFuture
+                        .thenAccept(main::about)
+                        .exceptionally(ExceptionLogger.get())
+                );
+    }
 
+    public static void commandInfo(MessageCreateEvent event, String command) {
+        System.out.println(event.getMessage().getAuthor() + " issued command '" + command + "'");
+    }
+
+    private static void about(DiscordApi yuri) {
+        yuri.addMessageCreateListener(new ping());
         yuri.addMessageCreateListener(event -> {
             if (event.getMessage().getContent().equalsIgnoreCase("y.about")) {
+                commandInfo(event, "y.about");
                 new MessageBuilder()
                         .setEmbed(new EmbedBuilder()
                                 .setAuthor("OpenYuri", "https://github.com/OrangeFlare/OpenYuriBot", "https://opensource.org/files/osi_keyhole_300X300_90ppi_0.png")
@@ -28,7 +48,7 @@ public class main {
                                 .addField("OpenYuri Developer", "OrangeFlare#1337", true)
                                 .addField("YuriTheKnifeWaifu Developer", "The Greatest Hero#0001", true)
                                 .addField("GitHub", "https://github.com/OrangeFlare/OpenYuriBot", false)
-                                .setTitle("OpenYuri v1.0.0")
+                                .setTitle(version)
                                 .setDescription("About Me!"))
                         .send(event.getChannel());
             }
