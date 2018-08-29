@@ -18,7 +18,8 @@ public class configManager {
             System.out.println("No bot.properties file found!\nGenerating one for you now ...");
             //START BOT.PROPERTIES FILE
             String data = "#OpenYuri Configuration File\n" +
-                    "discordAPI=";
+                    "discordAPI=\n" +
+                    "ownerID=";
             //END BOT.PROPERTIES FILE
             try {
                 Files.write(Paths.get("./bot.properties"), data.getBytes());

@@ -42,6 +42,7 @@ public class Main {
         yuri.addMessageCreateListener(new ping());
         yuri.addMessageCreateListener(new flipCoin());
         yuri.addMessageCreateListener(new animeActions());
+        yuri.addMessageCreateListener(new simonSays());
         yuri.addMessageCreateListener(event -> {
             if (event.getMessage().getContent().equalsIgnoreCase("y.help") ||
                     event.getMessage().getContent().equalsIgnoreCase("y.commands")) {
