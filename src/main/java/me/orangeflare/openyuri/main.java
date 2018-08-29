@@ -11,7 +11,7 @@ import me.orangeflare.openyuri.command.*;
 import java.io.IOException;
 
 public class main {
-    public static String version = "v1.0.2-DEV";
+    public static String version = "v1.0.2";
 
     public static void main(String[] args) throws IOException {
         configManager config = new configManager();
