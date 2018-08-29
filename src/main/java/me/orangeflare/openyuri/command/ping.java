@@ -3,7 +3,7 @@ package me.orangeflare.openyuri.command;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
-import static me.orangeflare.openyuri.main.commandIssued;
+import static me.orangeflare.openyuri.Main.commandIssued;
 
 public class ping implements MessageCreateListener {
     @Override

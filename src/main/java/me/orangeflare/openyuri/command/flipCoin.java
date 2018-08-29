@@ -5,7 +5,7 @@ import org.javacord.api.listener.message.MessageCreateListener;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import static me.orangeflare.openyuri.main.commandIssued;
+import static me.orangeflare.openyuri.Main.commandIssued;
 
 public class flipCoin implements MessageCreateListener {
     @Override

@@ -8,8 +8,12 @@ import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.util.logging.ExceptionLogger;
 import me.orangeflare.openyuri.command.*;
 
-public class main {
-    public static String version = "v1.0.3-DEV";
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+public class Main {
+    private static String version = "v1.0.3-DEV";
 
     public static void main(String[] args) {
         configManager config = new configManager();
