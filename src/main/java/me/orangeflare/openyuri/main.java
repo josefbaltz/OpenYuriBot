@@ -23,14 +23,13 @@ public class main {
             if (event.getMessage().getContent().equalsIgnoreCase("y.about")) {
                 new MessageBuilder()
                         .setEmbed(new EmbedBuilder()
-                                .setAuthor("Josef Baltz", "http://orangeflare.me/", "https://opensource.org/files/osi_keyhole_300X300_90ppi_0.png")
+                                .setAuthor("OpenYuri", "https://github.com/OrangeFlare/OpenYuriBot", "https://opensource.org/files/osi_keyhole_300X300_90ppi_0.png")
                                 .setThumbnail("https://vignette.wikia.nocookie.net/doki-doki-literature-club/images/a/a1/Yuri_sticker_1.png/revision/latest?cb=20171112094412")
                                 .addField("OpenYuri Developer", "OrangeFlare#1337", true)
                                 .addField("YuriTheKnifeWaifu Developer", "The Greatest Hero#0001", true)
                                 .addField("GitHub", "https://github.com/OrangeFlare/OpenYuriBot", false)
                                 .setTitle("OpenYuri v1.0.0")
-                                .setDescription("About Me!")
-                                .setFooter("OpenYuri"))
+                                .setDescription("About Me!"))
                         .send(event.getChannel());
             }
         });
