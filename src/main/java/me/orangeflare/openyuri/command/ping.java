@@ -9,7 +9,7 @@ public class ping implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
         if(event.getMessage().getContent().equalsIgnoreCase("y.ping")) {
-            commandInfo(event, "y.ping");
+            commandInfo(event, "ping");
             event.getChannel().sendMessage("Pong!");
         }
     }

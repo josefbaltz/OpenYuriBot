@@ -12,7 +12,7 @@ jar {
 }
 
 group 'orangeflare.me'
-version '1.0.2'
+version '1.0.3-DEV'
 
 sourceCompatibility = 1.8
 

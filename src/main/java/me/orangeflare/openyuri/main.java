@@ -2,6 +2,7 @@ package me.orangeflare.openyuri;
 
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
+import org.javacord.api.entity.message.Message;
 import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
@@ -11,7 +12,7 @@ import me.orangeflare.openyuri.command.*;
 import java.io.IOException;
 
 public class main {
-    public static String version = "v1.0.2";
+    public static String version = "v1.0.3-DEV";
 
     public static void main(String[] args) throws IOException {
         configManager config = new configManager();
@@ -38,9 +39,20 @@ public class main {
 
     private static void about(DiscordApi yuri) {
         yuri.addMessageCreateListener(new ping());
+        yuri.addMessageCreateListener(new flipCoin());
+        yuri.addMessageCreateListener(event -> {
+            if (event.getMessage().getContent().equalsIgnoreCase("y.help")) {
+                commandInfo(event, "help");
+                new MessageBuilder()
+                        .append("```y.about - Give information about me!```")
+                        .append("```y.ping - Replies with 'Pong!'```")
+                        .append("```y.flipcoin, y.coinflip - Flips a coin!```")
+                        .send(event.getChannel());
+            }
+        });
         yuri.addMessageCreateListener(event -> {
             if (event.getMessage().getContent().equalsIgnoreCase("y.about")) {
-                commandInfo(event, "y.about");
+                commandInfo(event, "about");
                 new MessageBuilder()
                         .setEmbed(new EmbedBuilder()
                                 .setAuthor("OpenYuri", "https://github.com/OrangeFlare/OpenYuriBot", "https://opensource.org/files/osi_keyhole_300X300_90ppi_0.png")
