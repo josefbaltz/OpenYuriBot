@@ -2,19 +2,16 @@ package me.orangeflare.openyuri;
 
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
-import org.javacord.api.entity.message.Message;
 import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.util.logging.ExceptionLogger;
 import me.orangeflare.openyuri.command.*;
 
-import java.io.IOException;
-
 public class main {
     public static String version = "v1.0.3-DEV";
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         configManager config = new configManager();
 
         String APIToken = config.read("discordAPI");

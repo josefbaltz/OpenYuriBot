@@ -1,6 +1,5 @@
 package me.orangeflare.openyuri;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.nio.file.Files;
