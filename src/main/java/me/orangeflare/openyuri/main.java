@@ -29,7 +29,7 @@ public class Main {
                 .setRecommendedTotalShards().join()
                 .loginAllShards()
                 .forEach(shardFuture -> shardFuture
-                        .thenAccept(main::about)
+                        .thenAccept(Main::core)
                         .exceptionally(ExceptionLogger.get())
                 );
     }
@@ -38,9 +38,21 @@ public class Main {
         System.out.println(event.getMessage().getAuthor() + " issued command '" + command + "'");
     }
 
-    private static void about(DiscordApi yuri) {
+    public static BufferedImage getResource(String dir) {
+        BufferedImage resource;
+        try {
+            resource = ImageIO.read(Main.class.getResource(dir));
+            return resource;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static void core(DiscordApi yuri) {
         yuri.addMessageCreateListener(new ping());
         yuri.addMessageCreateListener(new flipCoin());
+        yuri.addMessageCreateListener(new animeActions());
         yuri.addMessageCreateListener(event -> {
             if (event.getMessage().getContent().equalsIgnoreCase("y.help") ||
                     event.getMessage().getContent().equalsIgnoreCase("y.commands")) {
@@ -59,13 +71,14 @@ public class Main {
                 commandIssued(event, "about");
                 new MessageBuilder()
                         .setEmbed(new EmbedBuilder()
-                                .setAuthor("OpenYuri", "https://github.com/OrangeFlare/OpenYuriBot", "https://opensource.org/files/osi_keyhole_300X300_90ppi_0.png")
-                                .setThumbnail("https://vignette.wikia.nocookie.net/doki-doki-literature-club/images/a/a1/Yuri_sticker_1.png/revision/latest?cb=20171112094412")
+                                .setAuthor("OpenYuri", "https://github.com/OrangeFlare/OpenYuriBot", getResource("about/icon.png"))
+                                .setThumbnail(getResource("about/thumbnail.png"))
+                                .setTitle(version)
+                                .setDescription("About Me!")
                                 .addField("OpenYuri Developer", "OrangeFlare#1337", true)
                                 .addField("YuriTheKnifeWaifu Developer", "The Greatest Hero#0001", true)
                                 .addField("GitHub", "https://github.com/OrangeFlare/OpenYuriBot", false)
-                                .setTitle(version)
-                                .setDescription("About Me!"))
+                        )
                         .send(event.getChannel());
             }
         });
