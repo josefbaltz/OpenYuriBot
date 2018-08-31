@@ -26,7 +26,6 @@ public class animeActions implements MessageCreateListener {
     public void onMessageCreate(MessageCreateEvent event) {
         if(event.getMessage().getContent().toLowerCase().startsWith("y.kiss")) {
             commandIssued(event, "kiss");
-            event.getMessage().delete();
 
             String[] argArray = event.getMessage().getContent().split(" ", 2);
             if (argArray.length != 2) { return; }
@@ -49,7 +48,6 @@ public class animeActions implements MessageCreateListener {
 
         if(event.getMessage().getContent().toLowerCase().startsWith("y.slap")) {
             commandIssued(event, "slap");
-            event.getMessage().delete();
 
             String[] argArray = event.getMessage().getContent().split(" ", 2);
             if (argArray.length != 2) { return; }
@@ -72,7 +70,6 @@ public class animeActions implements MessageCreateListener {
 
         if(event.getMessage().getContent().toLowerCase().startsWith("y.hug")) {
             commandIssued(event, "hug");
-            event.getMessage().delete();
 
             String[] argArray = event.getMessage().getContent().split(" ", 2);
             if (argArray.length != 2) { return; }
@@ -95,7 +92,6 @@ public class animeActions implements MessageCreateListener {
 
         if(event.getMessage().getContent().toLowerCase().startsWith("y.kick")) {
             commandIssued(event, "kick");
-            event.getMessage().delete();
 
             String[] argArray = event.getMessage().getContent().split(" ", 2);
             if (argArray.length != 2) { return; }
@@ -118,7 +114,6 @@ public class animeActions implements MessageCreateListener {
 
         if(event.getMessage().getContent().toLowerCase().startsWith("y.punch")) {
             commandIssued(event, "punch");
-            event.getMessage().delete();
 
             String[] argArray = event.getMessage().getContent().split(" ", 2);
             if (argArray.length != 2) { return; }
@@ -141,7 +136,6 @@ public class animeActions implements MessageCreateListener {
 
         if(event.getMessage().getContent().toLowerCase().startsWith("y.lick")) {
             commandIssued(event, "lick");
-            event.getMessage().delete();
 
             String[] argArray = event.getMessage().getContent().split(" ", 2);
             if (argArray.length != 2) { return; }

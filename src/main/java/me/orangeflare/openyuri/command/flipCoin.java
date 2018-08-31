@@ -12,7 +12,6 @@ public class flipCoin implements MessageCreateListener {
     public void onMessageCreate(MessageCreateEvent event) {
         if (event.getMessage().getContent().equalsIgnoreCase("y.flipcoin") || event.getMessage().getContent().equalsIgnoreCase("y.coinflip")) {
             commandIssued(event, "flipcoin");
-            event.getMessage().delete();
 
             int coinFlipInt = ThreadLocalRandom.current().nextInt(0,2);
 

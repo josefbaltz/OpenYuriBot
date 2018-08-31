@@ -7,6 +7,7 @@ import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.util.logging.ExceptionLogger;
 import me.orangeflare.openyuri.command.*;
+import me.orangeflare.openyuri.command.devUtils.*;
 
 import java.awt.*;
 import java.io.InputStream;
@@ -35,6 +36,7 @@ public class Main {
 
     public static void commandIssued(MessageCreateEvent event, String command) {
         System.out.println(event.getMessage().getAuthor() + " issued command '" + command + "'");
+        event.getMessage().delete();
     }
 
     public static InputStream getResource(String dir) { return Main.class.getResourceAsStream(dir); }
@@ -44,11 +46,11 @@ public class Main {
         yuri.addMessageCreateListener(new flipCoin());
         yuri.addMessageCreateListener(new animeActions());
         yuri.addMessageCreateListener(new simonSays());
+        yuri.addMessageCreateListener(new objectInfo());
         yuri.addMessageCreateListener(event -> {
             if (event.getMessage().getContent().equalsIgnoreCase("y.help") ||
                     event.getMessage().getContent().equalsIgnoreCase("y.commands")) {
                 commandIssued(event, "help");
-                event.getMessage().delete();
 
                 new MessageBuilder()
                         .append("``OpenYuri Bot - " + version + "``\n")
@@ -69,7 +71,6 @@ public class Main {
             if (event.getMessage().getContent().equalsIgnoreCase("y.about") ||
                     event.getMessage().getContent().equalsIgnoreCase("y.info")) {
                 commandIssued(event, "about");
-                event.getMessage().delete();
 
                 new MessageBuilder()
                         .setEmbed(new EmbedBuilder()

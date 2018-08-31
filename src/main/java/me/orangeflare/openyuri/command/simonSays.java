@@ -30,8 +30,6 @@ public class simonSays implements MessageCreateListener {
             String[] argArray = event.getMessage().getContent().split(" ", 2);
             if (argArray.length != 2) { return; }
 
-            event.getMessage().delete();
-
             List<String> args = new ArrayList<>(Arrays.asList(argArray));
             args.remove(0);
 
