@@ -8,10 +8,11 @@ import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.util.logging.ExceptionLogger;
 import me.orangeflare.openyuri.command.*;
 
+import java.awt.*;
 import java.io.InputStream;
 
 public class Main {
-    private static String version = "v1.1.0";
+    private static String version = "v1.2.0-dev";
 
     public static void main(String[] args) {
         configManager config = new configManager();
@@ -57,7 +58,10 @@ public class Main {
                         .append("``y.flipcoin, y.coinflip - Flips a coin!``\n")
                         .append("``y.hug - Hug someone!``\n")
                         .append("``y.kiss - Kiss someone!``\n")
-                        .append("``y.slap - Slap someone!``")
+                        .append("``y.slap - Slap someone!``\n")
+                        .append("``y.punch - Punch someone!``\n")
+                        .append("``y.kick - Kick someone!``\n")
+                        .append("``y.lick - Lick someone!``\n")
                         .send(event.getChannel());
             }
         });
@@ -77,6 +81,7 @@ public class Main {
                                 .addField("OpenYuri Developer", "OrangeFlare#1337", true)
                                 .addField("YuriTheKnifeWaifu Developer", "The Greatest Hero#0001", true)
                                 .addField("GitHub", "https://github.com/OrangeFlare/OpenYuriBot", false)
+                                .setColor(Color.decode("#9c27b0"))
                         )
                         .send(event.getChannel());
             }

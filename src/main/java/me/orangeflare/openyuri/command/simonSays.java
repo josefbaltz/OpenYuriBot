@@ -17,11 +17,6 @@ public class simonSays implements MessageCreateListener {
         if(event.getMessage().getContent().toLowerCase().startsWith("y.ss") ||
                 event.getMessage().getContent().toLowerCase().startsWith("y.simonsays")) {
             commandIssued(event, "simonSays");
-            event.getMessage().delete();
-
-            String[] argArray = event.getMessage().getContent().split(" ", 2);
-            if (argArray.length != 2) { return; }
-
             configManager config = new configManager();
             String DiscordOwnerID;
             DiscordOwnerID = config.read("ownerID");
@@ -31,6 +26,12 @@ public class simonSays implements MessageCreateListener {
             Long DiscordOwnerIDLong = Long.parseLong(DiscordOwnerID);
 
             if (event.getMessage().getAuthor().getId() != DiscordOwnerIDLong) { return; }
+
+            String[] argArray = event.getMessage().getContent().split(" ", 2);
+            if (argArray.length != 2) { return; }
+
+            event.getMessage().delete();
+
             List<String> args = new ArrayList<>(Arrays.asList(argArray));
             args.remove(0);
 
