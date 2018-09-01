@@ -89,5 +89,23 @@ public class Main {
                         .send(event.getChannel());
             }
         });
+
+        yuri.addMessageCreateListener(event -> {
+            if (event.getMessage().getContent().equalsIgnoreCase("y.orangeflare")) {
+                commandIssued(event, "orangeflare");
+
+                new MessageBuilder()
+                        .setEmbed(new EmbedBuilder()
+                                //TODO Add .png to end of Resource Directory to re-enable loading of Author Icon when fixed by Javacord
+                                .setTitle("OrangeFlare")
+                                .setDescription("About Me!")
+                                .addField("Discord", "OrangeFlare#1337", true)
+                                .addField("GitHub", "https://github.com/OrangeFlare", true)
+                                .setImage(getResource("/etc/orangeflare.gif"), "gif")
+                                .setColor(Color.decode("#9c27b0"))
+                        )
+                        .send(event.getChannel());
+            }
+        });
     }
 }
