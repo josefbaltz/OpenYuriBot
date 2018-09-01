@@ -49,7 +49,6 @@ public class Main {
         yuri.addMessageCreateListener(new animeActions());
         yuri.addMessageCreateListener(new simonSays());
         yuri.addMessageCreateListener(new objectInfo());
-        yuri.addMessageCreateListener(new utilities());
         yuri.addMessageCreateListener(event -> {
             if (event.getMessage().getContent().equalsIgnoreCase("y.help") ||
                     event.getMessage().getContent().equalsIgnoreCase("y.commands")) {
