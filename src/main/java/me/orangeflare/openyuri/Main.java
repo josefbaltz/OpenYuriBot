@@ -2,6 +2,7 @@ package me.orangeflare.openyuri;
 
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
+import org.javacord.api.entity.activity.ActivityType;
 import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
@@ -42,11 +43,13 @@ public class Main {
     public static InputStream getResource(String dir) { return Main.class.getResourceAsStream(dir); }
 
     private static void core(DiscordApi yuri) {
+        yuri.updateActivity(ActivityType.LISTENING, "your heartbeat");
         yuri.addMessageCreateListener(new ping());
         yuri.addMessageCreateListener(new flipCoin());
         yuri.addMessageCreateListener(new animeActions());
         yuri.addMessageCreateListener(new simonSays());
         yuri.addMessageCreateListener(new objectInfo());
+        yuri.addMessageCreateListener(new utilities());
         yuri.addMessageCreateListener(event -> {
             if (event.getMessage().getContent().equalsIgnoreCase("y.help") ||
                     event.getMessage().getContent().equalsIgnoreCase("y.commands")) {
