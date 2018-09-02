@@ -87,7 +87,8 @@ public class Main {
                                 .setDescription("About Me!")
                                 .addField("OpenYuri Developer", "OrangeFlare#1337", true)
                                 .addField("YuriTheKnifeWaifu Developer", "The Greatest Hero#0001", true)
-                                .addField("GitHub", "https://github.com/OrangeFlare/OpenYuriBot", false)
+                                .addField("GitHub", "OrangeFlare/OpenYuriBot", true)
+                                .addField("Server Count", Integer.toString(event.getApi().getServers().size()), true)
                                 .setColor(Color.decode("#9c27b0"))
                         )
                         .send(event.getChannel());
