@@ -68,7 +68,8 @@ public class Main {
                         .append("``y.kick - Kick someone!``\n")
                         .append("``y.lick - Lick someone!``\n")
                         .append("``y.emojilist, y.emojis - Returns list of custom emojis!``\n")
-                        .append("``y.channelinfo - Returns information about the current channel!``")
+                        .append("``y.channelinfo - Returns information about the current channel!``\n")
+                        .append("``y.memberlist, y.members - Returns list of members!``")
                         .send(event.getChannel());
             }
         });

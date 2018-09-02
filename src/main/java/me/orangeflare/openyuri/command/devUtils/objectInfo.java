@@ -42,9 +42,23 @@ public class objectInfo implements MessageCreateListener {
         if(formattedContent.startsWith("y.emojilist") || formattedContent.startsWith("y.emojis")) {
             commandIssued(event, "emojiList");
             new MessageBuilder()
-                    .append("```" + event.getServer().map(Server::getName).get() + "'s Emoji List\n - ")
+                    .append("```" + event.getServer().map(Server::getName).get() + "'s Emoji List\n")
                     .append(event.getServer()
                             .map(Server::getCustomEmojis)
+                            .orElse(Collections.emptyList())
+                            .stream()
+                            .map(Nameable::getName)
+                            .collect(Collectors.joining("\n")))
+                    .append("```")
+                    .send(event.getChannel());
+        }
+
+        if(formattedContent.startsWith("y.memberlist") || formattedContent.startsWith("y.members")) {
+            commandIssued(event, "memberList");
+            new MessageBuilder()
+                    .append("```" + event.getServer().map(Server::getName).get() + "'s Member List \n")
+                    .append(event.getServer()
+                            .map(Server::getMembers)
                             .orElse(Collections.emptyList())
                             .stream()
                             .map(Nameable::getName)
