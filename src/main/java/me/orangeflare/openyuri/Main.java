@@ -91,7 +91,6 @@ public class Main {
                         .send(event.getChannel());
             }
         });
-
         yuri.addMessageCreateListener(event -> {
             if (event.getMessage().getContent().equalsIgnoreCase("y.orangeflare")) {
                 commandIssued(event, "orangeflare");
