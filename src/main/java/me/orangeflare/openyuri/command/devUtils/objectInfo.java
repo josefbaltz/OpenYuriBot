@@ -4,9 +4,11 @@ import org.javacord.api.entity.Nameable;
 import org.javacord.api.entity.channel.ServerChannel;
 import org.javacord.api.entity.channel.ServerTextChannel;
 import org.javacord.api.entity.channel.TextChannel;
+import org.javacord.api.entity.channel.VoiceChannel;
 import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.entity.server.Server;
+import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
@@ -64,6 +66,25 @@ public class objectInfo implements MessageCreateListener {
                             .collect(Collectors.joining("\n")))
                     .append("```")
                     .send(event.getChannel());
+        }
+
+        if(formattedContent.startsWith("y.serverinfo")) {
+            commandIssued(event, "serverInfo");
+            new MessageBuilder()
+                    .setEmbed(new EmbedBuilder()
+                            .setTitle("Server Information")
+                            .setThumbnail(getResource("/about/thumbnail.png"))
+                            .addField("Name", event.getServer().map(Server::getName).get(), true)
+                            .addField("Owner", event.getServer().map(Server::getOwner).map(User::getName).get(), true)
+                            .addField("Region", event.getServer().map(Server::getRegion).map(Nameable::getName).get(), true)
+                            .addField("ID", event.getServer().map(Server::getId).get().toString(), true)
+                            .addField("Voice Channel Count", Integer.toString(event.getServer().map(Server::getVoiceChannels).get().size()), true)
+                            .addField("Text Channel Count", Integer.toString(event.getServer().map(Server::getTextChannels).get().size()), true)
+                            .addField("Roles", event.getServer().map(Server::getRoles).orElse(Collections.emptyList()).stream().map(Nameable::getName).collect(Collectors.joining(", ")), true)
+                            .setColor(Color.decode("#9c27b0"))
+                    )
+                    .send(event.getChannel());
+
         }
     }
 }

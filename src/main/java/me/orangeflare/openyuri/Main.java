@@ -69,7 +69,8 @@ public class Main {
                         .append("``y.lick - Lick someone!``\n")
                         .append("``y.emojilist, y.emojis - Returns list of custom emojis!``\n")
                         .append("``y.channelinfo - Returns information about the current channel!``\n")
-                        .append("``y.memberlist, y.members - Returns list of members!``")
+                        .append("``y.memberlist, y.members - Returns list of members!``\n")
+                        .append("``y.serverinfo - Returns MASSIVE list of information about the server!``\n")
                         .send(event.getChannel());
             }
         });
