@@ -24,7 +24,9 @@ public class animeActions implements MessageCreateListener {
 
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
-        if(event.getMessage().getContent().toLowerCase().startsWith("y.kiss") && !event.getMessage().getContent().contains("@everyone")) {
+        String formattedContent = event.getMessage().getContent().toLowerCase();
+
+        if(formattedContent.startsWith("y.kiss") && !event.getMessage().getContent().contains("@everyone")) {
             commandIssued(event, "kiss");
 
             String[] argArray = event.getMessage().getContent().split(" ", 2);
@@ -46,7 +48,7 @@ public class animeActions implements MessageCreateListener {
                     .send(event.getChannel());
         }
 
-        if(event.getMessage().getContent().toLowerCase().startsWith("y.slap") && !event.getMessage().getContent().contains("@everyone")) {
+        if(formattedContent.startsWith("y.slap") && !event.getMessage().getContent().contains("@everyone")) {
             commandIssued(event, "slap");
 
             String[] argArray = event.getMessage().getContent().split(" ", 2);
@@ -68,7 +70,7 @@ public class animeActions implements MessageCreateListener {
                     .send(event.getChannel());
         }
 
-        if(event.getMessage().getContent().toLowerCase().startsWith("y.hug") && !event.getMessage().getContent().contains("@everyone")) {
+        if(formattedContent.startsWith("y.hug") && !event.getMessage().getContent().contains("@everyone")) {
             commandIssued(event, "hug");
 
             String[] argArray = event.getMessage().getContent().split(" ", 2);
@@ -90,7 +92,7 @@ public class animeActions implements MessageCreateListener {
                     .send(event.getChannel());
         }
 
-        if(event.getMessage().getContent().toLowerCase().startsWith("y.kick") && !event.getMessage().getContent().contains("@everyone")) {
+        if(formattedContent.startsWith("y.kick") && !event.getMessage().getContent().contains("@everyone")) {
             commandIssued(event, "kick");
 
             String[] argArray = event.getMessage().getContent().split(" ", 2);
@@ -112,7 +114,7 @@ public class animeActions implements MessageCreateListener {
                     .send(event.getChannel());
         }
 
-        if(event.getMessage().getContent().toLowerCase().startsWith("y.punch") && !event.getMessage().getContent().contains("@everyone")) {
+        if(formattedContent.startsWith("y.punch") && !event.getMessage().getContent().contains("@everyone")) {
             commandIssued(event, "punch");
 
             String[] argArray = event.getMessage().getContent().split(" ", 2);
@@ -134,7 +136,7 @@ public class animeActions implements MessageCreateListener {
                     .send(event.getChannel());
         }
 
-        if(event.getMessage().getContent().toLowerCase().startsWith("y.lick") && !event.getMessage().getContent().contains("@everyone")) {
+        if(formattedContent.startsWith("y.lick") && !event.getMessage().getContent().contains("@everyone")) {
             commandIssued(event, "lick");
 
             String[] argArray = event.getMessage().getContent().split(" ", 2);

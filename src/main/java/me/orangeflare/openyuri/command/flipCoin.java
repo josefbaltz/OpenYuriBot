@@ -10,7 +10,9 @@ import static me.orangeflare.openyuri.Main.commandIssued;
 public class flipCoin implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
-        if (event.getMessage().getContent().equalsIgnoreCase("y.flipcoin") || event.getMessage().getContent().equalsIgnoreCase("y.coinflip")) {
+        String formattedContent = event.getMessage().getContent().toLowerCase();
+
+        if (formattedContent.equals("y.flipcoin") || formattedContent.equals("y.coinflip")) {
             commandIssued(event, "flipcoin");
 
             int coinFlipInt = ThreadLocalRandom.current().nextInt(0,2);

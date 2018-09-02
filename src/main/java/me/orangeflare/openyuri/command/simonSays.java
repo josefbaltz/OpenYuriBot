@@ -14,7 +14,9 @@ import static me.orangeflare.openyuri.Main.commandIssued;
 public class simonSays implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
-        if(event.getMessage().getContent().toLowerCase().startsWith("y.ss") ||
+        String formattedContent = event.getMessage().getContent().toLowerCase();
+
+        if(formattedContent.startsWith("y.ss") ||
                 event.getMessage().getContent().toLowerCase().startsWith("y.simonsays")) {
             commandIssued(event, "simonSays");
             configManager config = new configManager();
