@@ -32,7 +32,7 @@ public class objectInfo implements MessageCreateListener {
                             .setTitle("Channel Information")
                             .addField("Name", channel.asServerChannel().map(ServerChannel::getName).get(), true)
                             .addField("ID", channel.asServerChannel().map(ServerChannel::getIdAsString).get(), true)
-                            .addField("Category", channel.asServerTextChannel().map(ServerTextChannel::getCategory).get().map(Nameable::getName).get(), true)
+                            //.addField("Category", channel.asServerTextChannel().map(ServerTextChannel::getCategory).get().map(Nameable::getName).get(), true)
                             .setColor(Color.decode("#9c27b0"))
                     )
                     .send(event.getChannel());
