@@ -5,6 +5,7 @@ import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.activity.ActivityType;
 import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
+import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.util.logging.ExceptionLogger;
 import me.orangeflare.openyuri.command.*;
@@ -36,7 +37,7 @@ public class Main {
     }
 
     public static void commandIssued(MessageCreateEvent event, String command) {
-        System.out.println(event.getMessage().getAuthor() + " issued command '" + command + "'");
+        System.out.println(event.getMessage().getAuthor().asUser().map(User::getDiscriminatedName).get() + " issued command '" + command + "'");
         event.getMessage().delete();
     }
 
