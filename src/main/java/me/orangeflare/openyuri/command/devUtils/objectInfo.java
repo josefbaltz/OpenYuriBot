@@ -28,7 +28,6 @@ public class objectInfo implements MessageCreateListener {
             TextChannel channel = event.getMessage().getChannel();
             new MessageBuilder()
                     .setEmbed(new EmbedBuilder()
-                            .setAuthor("OpenYuri")
                             .setThumbnail(getResource("/about/thumbnail.png"))
                             .setTitle("Channel Information")
                             .addField("Name", channel.asServerChannel().map(ServerChannel::getName).get(), true)
