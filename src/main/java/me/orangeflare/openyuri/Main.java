@@ -79,8 +79,7 @@ public class Main {
 
                 new MessageBuilder()
                         .setEmbed(new EmbedBuilder()
-                                //TODO Add .png to end of Resource Directory to re-enable loading of Author Icon when fixed by Javacord
-                                .setAuthor("OpenYuri", "https://github.com/OrangeFlare/OpenYuriBot", getResource("/about/icon"))
+                                .setAuthor("OpenYuri")
                                 .setThumbnail(getResource("/about/thumbnail.png"))
                                 .setTitle(version)
                                 .setDescription("About Me!")
@@ -99,7 +98,6 @@ public class Main {
 
                 new MessageBuilder()
                         .setEmbed(new EmbedBuilder()
-                                //TODO Add .png to end of Resource Directory to re-enable loading of Author Icon when fixed by Javacord
                                 .setTitle("OrangeFlare")
                                 .setDescription("About Me!")
                                 .addField("Discord", "OrangeFlare#1337", true)
