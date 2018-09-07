@@ -1,10 +1,7 @@
 package me.orangeflare.openyuri.command.devUtils;
 
 import org.javacord.api.entity.Nameable;
-import org.javacord.api.entity.channel.ServerChannel;
-import org.javacord.api.entity.channel.ServerTextChannel;
-import org.javacord.api.entity.channel.TextChannel;
-import org.javacord.api.entity.channel.VoiceChannel;
+import org.javacord.api.entity.channel.*;
 import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.entity.server.Server;
@@ -12,6 +9,7 @@ import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
+import javax.naming.Name;
 import java.awt.*;
 import java.util.Collections;
 import java.util.stream.Collectors;
@@ -34,7 +32,8 @@ public class objectInfo implements MessageCreateListener {
                             .setTitle("Channel Information")
                             .addField("Name", channel.asServerChannel().map(ServerChannel::getName).get(), true)
                             .addField("ID", channel.asServerChannel().map(ServerChannel::getIdAsString).get(), true)
-                            //.addField("Category", channel.asServerTextChannel().map(ServerTextChannel::getCategory).get().map(Nameable::getName).get(), true)
+                            .addField("Category", channel.asServerTextChannel().flatMap(Categorizable::getCategory).map(Nameable::getName).orElse("None"), true)
+                            .addField("Topic", channel.asServerTextChannel().flatMap(A).map(Nameable::getName).orElse("None"), true)
                             .setColor(Color.decode("#9c27b0"))
                     )
                     .send(event.getChannel());
