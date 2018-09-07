@@ -29,10 +29,10 @@ public class objectInfo implements MessageCreateListener {
             TextChannel channel = event.getMessage().getChannel();
 
             String topicContent;
-            if (channel.asServerTextChannel().map(ServerTextChannel::getTopic).get().isEmpty()) {
+            if (channel.asServerTextChannel().map(ServerTextChannel::getTopic).orElseThrow(AssertionError::new).isEmpty()) {
                 topicContent = "None";
             } else {
-                topicContent = channel.asServerTextChannel().map(ServerTextChannel::getTopic).get();
+                topicContent = channel.asServerTextChannel().map(ServerTextChannel::getTopic).orElseThrow(AssertionError::new);
             }
 
             new MessageBuilder()
