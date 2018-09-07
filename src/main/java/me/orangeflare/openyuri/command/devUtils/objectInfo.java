@@ -28,13 +28,6 @@ public class objectInfo implements MessageCreateListener {
 
             TextChannel channel = event.getMessage().getChannel();
 
-            String topicContent;
-            if (channel.asServerTextChannel().map(ServerTextChannel::getTopic).orElseThrow(AssertionError::new).isEmpty()) {
-                topicContent = "None";
-            } else {
-                topicContent = channel.asServerTextChannel().map(ServerTextChannel::getTopic).orElseThrow(AssertionError::new);
-            }
-
             new MessageBuilder()
                     .setEmbed(new EmbedBuilder()
                             .setThumbnail(getResource("/about/thumbnail.png"))
@@ -42,7 +35,7 @@ public class objectInfo implements MessageCreateListener {
                             .addField("Name", channel.asServerChannel().map(ServerChannel::getName).get(), true)
                             .addField("ID", channel.asServerChannel().map(ServerChannel::getIdAsString).get(), true)
                             .addField("Category", channel.asServerTextChannel().flatMap(Categorizable::getCategory).map(Nameable::getName).orElse("None"), true)
-                            .addField("Topic", topicContent, true)
+                            .addField("Topic", channel.asServerTextChannel().map(ServerTextChannel::getTopic).filter(topic -> !topic.isEmpty()).orElse("None"), true)
                             .setColor(Color.decode("#9c27b0"))
                     )
                     .send(event.getChannel()).exceptionally(ExceptionLogger.get());
