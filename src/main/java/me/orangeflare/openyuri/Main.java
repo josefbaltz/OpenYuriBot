@@ -15,7 +15,7 @@ import java.awt.*;
 import java.io.InputStream;
 
 public class Main {
-    private static String version = "v1.2.0";
+    private static String version = "v1.3.0-dev";
 
     public static void main(String[] args) {
         configManager config = new configManager();
