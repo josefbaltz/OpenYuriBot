@@ -8,6 +8,7 @@ import org.javacord.api.entity.server.Server;
 import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
+import org.javacord.api.util.logging.ExceptionLogger;
 
 import javax.naming.Name;
 import java.awt.*;
@@ -33,10 +34,10 @@ public class objectInfo implements MessageCreateListener {
                             .addField("Name", channel.asServerChannel().map(ServerChannel::getName).get(), true)
                             .addField("ID", channel.asServerChannel().map(ServerChannel::getIdAsString).get(), true)
                             .addField("Category", channel.asServerTextChannel().flatMap(Categorizable::getCategory).map(Nameable::getName).orElse("None"), true)
-                            .addField("Topic", channel.asServerTextChannel().flatMap(A).map(Nameable::getName).orElse("None"), true)
+                            .addField("Topic", channel.asServerTextChannel().map(ServerTextChannel::getTopic).orElse("None"), true)
                             .setColor(Color.decode("#9c27b0"))
                     )
-                    .send(event.getChannel());
+                    .send(event.getChannel()).exceptionally(ExceptionLogger.get());
         }
 
         if(formattedContent.startsWith("y.emojilist") || formattedContent.startsWith("y.emojis")) {
