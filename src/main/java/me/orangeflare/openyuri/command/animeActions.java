@@ -25,14 +25,13 @@ public class animeActions implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
         String formattedContent = event.getMessage().getContent().toLowerCase();
+        String[] argArray = event.getMessage().getContent().split(" ", 2);
+        if (argArray.length != 2) { return; }
+        List<String> args = new ArrayList<>(Arrays.asList(argArray));
+        args.remove(0);
 
         if(formattedContent.startsWith("y.kiss") && !event.getMessage().getContent().contains("@everyone")) {
             commandIssued(event, "kiss");
-
-            String[] argArray = event.getMessage().getContent().split(" ", 2);
-            if (argArray.length != 2) { return; }
-            List<String> args = new ArrayList<>(Arrays.asList(argArray));
-            args.remove(0);
 
             int randImage = ThreadLocalRandom.current().nextInt(1, kissCount+1);
 
@@ -51,11 +50,6 @@ public class animeActions implements MessageCreateListener {
         if(formattedContent.startsWith("y.slap") && !event.getMessage().getContent().contains("@everyone")) {
             commandIssued(event, "slap");
 
-            String[] argArray = event.getMessage().getContent().split(" ", 2);
-            if (argArray.length != 2) { return; }
-            List<String> args = new ArrayList<>(Arrays.asList(argArray));
-            args.remove(0);
-
             int randImage = ThreadLocalRandom.current().nextInt(1, slapCount+1);
 
             new MessageBuilder()
@@ -72,11 +66,6 @@ public class animeActions implements MessageCreateListener {
 
         if(formattedContent.startsWith("y.hug") && !event.getMessage().getContent().contains("@everyone")) {
             commandIssued(event, "hug");
-
-            String[] argArray = event.getMessage().getContent().split(" ", 2);
-            if (argArray.length != 2) { return; }
-            List<String> args = new ArrayList<>(Arrays.asList(argArray));
-            args.remove(0);
 
             int randImage = ThreadLocalRandom.current().nextInt(1, hugCount+1);
 
@@ -95,11 +84,6 @@ public class animeActions implements MessageCreateListener {
         if(formattedContent.startsWith("y.kick") && !event.getMessage().getContent().contains("@everyone")) {
             commandIssued(event, "kick");
 
-            String[] argArray = event.getMessage().getContent().split(" ", 2);
-            if (argArray.length != 2) { return; }
-            List<String> args = new ArrayList<>(Arrays.asList(argArray));
-            args.remove(0);
-
             int randImage = ThreadLocalRandom.current().nextInt(1, kickCount+1);
 
             new MessageBuilder()
@@ -117,11 +101,6 @@ public class animeActions implements MessageCreateListener {
         if(formattedContent.startsWith("y.punch") && !event.getMessage().getContent().contains("@everyone")) {
             commandIssued(event, "punch");
 
-            String[] argArray = event.getMessage().getContent().split(" ", 2);
-            if (argArray.length != 2) { return; }
-            List<String> args = new ArrayList<>(Arrays.asList(argArray));
-            args.remove(0);
-
             int randImage = ThreadLocalRandom.current().nextInt(1, punchCount+1);
 
             new MessageBuilder()
@@ -138,11 +117,6 @@ public class animeActions implements MessageCreateListener {
 
         if(formattedContent.startsWith("y.lick") && !event.getMessage().getContent().contains("@everyone")) {
             commandIssued(event, "lick");
-
-            String[] argArray = event.getMessage().getContent().split(" ", 2);
-            if (argArray.length != 2) { return; }
-            List<String> args = new ArrayList<>(Arrays.asList(argArray));
-            args.remove(0);
 
             int randImage = ThreadLocalRandom.current().nextInt(1, lickCount+1);
 
